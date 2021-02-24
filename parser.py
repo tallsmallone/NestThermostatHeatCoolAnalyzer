@@ -26,7 +26,7 @@ def open_json(month, year):
     """
     Opens the json file and returns a dictionary.
     """
-    directory = f'{year}/{month}/'
+    directory = f'data/{year}/{month}/'
     file_name = f'{year}-{month}-summary.json'
 
     with open(directory + file_name) as json_file:
