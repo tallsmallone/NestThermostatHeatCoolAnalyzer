@@ -72,14 +72,14 @@ if __name__ == '__main__':
             # calculate heat average
             try:
                 count = 0
-                temp_average = 0
+                heat_average = 0
                 for index in range(-1, -10, -1):
                     count = count + 1
-                    temp_average = temp_average + heat_time[index]
+                    heat_average = heat_average + heat_time[index]
             except:
                 pass
             finally:
-                heat_average_7_day.append(temp_average/count)
+                heat_average_7_day.append(heat_average/count)
 
     # setup line graph
     plt.style.use('dark_background')
