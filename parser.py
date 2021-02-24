@@ -1,26 +1,23 @@
 import json
 import pdb
+import os
 import matplotlib.pyplot as plt
 
-available_dates = [
-    '10/2019',
-    '11/2019',
-    '12/2019',
-    '01/2020',
-    '02/2020',
-    '03/2020',
-    '04/2020',
-    '05/2020',
-    '06/2020',
-    '07/2020',
-    '08/2020',
-    '09/2020',
-    '10/2020',
-    '11/2020',
-    '12/2020',
-    '01/2021',
-    '02/2021'
-]
+def get_all_dates():
+    """
+    Looks in the data directory and gets all the dates present.
+    """
+    dates = []
+
+    current_directory = os.getcwd()
+
+    for _, years, _ in os.walk(os.path.join(current_directory, 'data')):
+        for year in years:
+            for _, months, _ in os.walk(os.path.join(current_directory, 'data', year)):
+                for month in months:
+                    dates.append(f'{month}/{year}')
+
+    return dates
 
 def open_json(month, year):
     """
@@ -56,7 +53,8 @@ if __name__ == '__main__':
     heat_time = []
     cool_time = []
 
-    for date in available_dates:
+    # go through all dates
+    for date in get_all_dates():
         month = open_json(date.split('/')[0], date.split('/')[1])
 
         # parse every single day in each month
