@@ -33,7 +33,7 @@ def open_json(month, year):
 
 def get_daily_heat_duration(data):
     """
-    Returns the fotal heat time for the given day.
+    Returns the total heat time for the given day.
     """
     heating = 0
     cooling = 0
@@ -46,8 +46,7 @@ def get_daily_heat_duration(data):
 
     return (heating, cooling)
 
-if __name__ == '__main__':
-    label = []
+def parse_data():
     heat_average_7_day = []
     date_row = []
     heat_time = []
@@ -81,7 +80,14 @@ if __name__ == '__main__':
             finally:
                 heat_average_7_day.append(heat_average/count)
 
-    # setup line graph
+    return date_row, heat_time, heat_average_7_day
+
+def plot_data(date_row, heat_time, heat_average_7_day):
+    """
+    Plots the given data.
+    """
+    label = []
+
     plt.style.use('dark_background')
     plt.plot(date_row, heat_time, label='Heat Time', c='r')
     plt.plot(date_row, heat_average_7_day, label='Average Heat Time', c='b')
@@ -100,3 +106,10 @@ if __name__ == '__main__':
 
     # show the plot
     plt.show()
+
+if __name__ == '__main__':
+    # parse the data and get the relavent information
+    date_row, heat_time, heat_average_7_day = parse_data()
+
+    # setup line graph
+    plot_data(date_row, heat_time, heat_average_7_day)
